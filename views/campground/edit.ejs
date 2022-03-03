@@ -1,0 +1,69 @@
+<% layout('layouts/Boilerplate') %>  
+    <div class="row mb-3">
+        <h1 class="text-center">Edit Campground</h1>
+        <div class="col-6 offset-3">
+            <form action="/campground/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated_form">
+                <div class="mb-3">
+                    <label class="form-lable" for="title"> Title: </label>
+                    <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title%>" required>
+                    <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-lable" for="location"> Location: </label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" value="<%=campground.location%>"required>
+                    <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+                </div>
+                <div class=" mb-3">
+                    <label class="form-lable" for="price"> Price: </label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input id="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="campground[price]" value="<%=campground.price%>"required>
+                        <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-lable" for="image"> Image URL: </label>
+                    <input class="form-control" type="text" id="image" name="campground[image]" value="<%=campground.image%>"required>
+                    <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-lable" for="description"> Description: </label>
+                    <textarea class="form-control" type="text" id="description" name="campground[description]"required><%=campground.description%></textarea>
+                    <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Submit Changes</button>
+                </div>
+                <footer>
+                    <form action="/campground/<%=campground._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-primary">Delete this campground</button>
+                </footer>
+            </form>
+        </div>
+    </div>

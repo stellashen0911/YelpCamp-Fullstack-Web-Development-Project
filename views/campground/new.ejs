@@ -1,0 +1,68 @@
+<% layout('layouts/Boilerplate') %>
+<div class="row mb-3">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        <form action="/campground" method="POST" novalidate class="validated_form">
+            <div class="mb-3">
+                <label class="form-lable" for="title"> Title: </label>
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable" for="location"> Location: </label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+            </div>
+            <div class=" mb-3">
+                <label class="form-lable" for="price"> Price: </label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input id="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="campground[price]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                        Please put valid input.
+                      </div>
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable" for="image"> Image URL: </label>
+                <input class="form-control" type="text" id="image" name="campground[image]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-lable" for="description"> Description: </label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please put valid input.
+                  </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Submit new campground</button>
+            </div>
+            <footer>
+                <a class="btn btn-primary" href="/campground"> Back to All Campground</a>
+            </footer>
+        </form>
+    </div>
+</div>
