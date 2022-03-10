@@ -6,26 +6,6 @@ const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const ExpressErros = require('../utilities/ExpressErrors');
 const { campgroundSchema, reviewSchema } = require('../schema.js');
 
-//add middleware to validate campground schema and review schema
-const validateCampground = (req, res, next) => {
-    const {error} = campgroundSchema.validate(req.body);
-    if(error) {
-        const msg = error.details.map(element => element.message).join(',');
-        throw new ExpressErros(msg, 400);
-    } else {
-        next();
-    }
-}
-const isAuthor = async (req, res, next) => {
-    const {id} = req.params;
-    const campground = await Campground.findById(id);
-    if (!campground.author.equals(req.user._id)) {
-        req.flash('error', 'You do not have the permission to do that!');
-        return res.redirect(`/campground/${campground._id}`);
-    }
-    next();
-}
-
 router.get('/', catchAsyn(async (req, res) => {
     const campground = await Campground.find({});
     res.render('campground/index', {campground});
@@ -45,7 +25,12 @@ router.post('/', isLoggedIn, validateCampground, catchAsyn(async (req, res) => {
 }));
 
 router.get('/:id', catchAsyn(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate('reviews').populate('author');
+    const campground = await Campground.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
     console.log(campground);
     if(!campground) {
         req.flash('error', 'There is no such campground!');
